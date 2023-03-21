@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    
+<head>
+    <meta charset="utf-8" content="width=device-width, initial-scale=1">
+    <title>25th Floor</title>
+    <style type="text/css">
+        body {
+            background-image: transparent;
+            background-position: relative;
+            height: 100%;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: relative;
+            background-repeat: no-repeat;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            min-width: 100vh;
+            background-position-x: center;
+            margin: 0;
+        }
+        
+        .images {
+            text-align: center;
+            padding-top: 10px;
+        }
+        
+        audio {
+            display: none !important;
+        }
+        .bgContainer {
+            min-height: 100vh;
+            width: 100%;
+            margin: auto;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        @media only screen and (max-width: 1280px) {
+            .bgContainer { 
+                width: 100%;
+            }
+        }
+        @media only screen and (max-width: 720px) {
+            .bgContainer { 
+                width: 100%;
+            }
+        }
+    
+    </style>
+</head>
+
+<body onclick="go_full_screen()">
+
+    <!-- added a new div which reside inside body
+        now  can adjust the width of this div to make it look good made by artari punk -->
+    <div class="bgContainer"></div>
+    <audio controls id="audio1"><source src="Piano.mp3" type="audio/mp3"></audio>
+    <audio controls id="audio2"><source src="Ballad.mp3" type="audio/mp3"></audio>
+    <audio controls id="audio3"><source src="Guitar.mp3" type="audio/mp3"></audio>
+    <audio controls id="audio4"><source src="Country.mp3" type="audio/mp3"></audio>
+    <!-- <div class="images">
+        <img src="light.png" class="day-night" id="day">
+        <img src="dark.png" class="day-night" id="night">
+    </div> -->
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+    
+    setInterval(function() {
+        // var date = convertTZ("America/New_York");
+        var date = new Date(); //convertTZ("Asia/Bangkok");
+        var minuite = date.getMinutes();
+        var hours = date.getHours();
+        
+        //var hours = 7;
+        console.log();
+        if (hours >= 17 && hours <= 18) {
+            if ($(".bgContainer").css("background-image").indexOf("4.gif") == -1) {
+                $(".bgContainer").css("background-image", "url(4.gif)");
+            }
+            
+        
+        } 
+        
+        else if  (hours >= 19 && hours <= 23 || hours >= 0 && hours <= 4 ){
+            if ($(".bgContainer").css("background-image").indexOf("3.gif") == -1) {
+                $(".bgContainer").css("background-image", "url(3.gif)");
+            }
+            
+            console.log("ss")
+        }  
+        else if  (hours >= 5 && hours <= 7){
+            if ($(".bgContainer").css("background-image").indexOf("1.gif") == -1) {
+                $(".bgContainer").css("background-image", "url(1.gif)");
+            }
+            
+        
+        } 
+        else if  (hours >= 8 && hours <= 16){
+            if ($(".bgContainer").css("background-image").indexOf("2.gif") == -1) {
+                $(".bgContainer").css("background-image", "url(2.gif)");
+            }
+            
+        
+        }  
+        else {console.log("Error from play_gif")}
+        
+    }, 1000);
+
+
+    function convertTZ(tzString) {
+        return new Date((new Date()).toLocaleString("en-US", {
+            timeZone: tzString
+        }));
+    }
+
+    $('body').click(function() {
+        var date = new Date(); 
+        var hours = date.getHours();
+        // for sound
+        //เย็น
+        if (hours >= 17 && hours <= 18) {
+            play_audio1();
+            //กลางคืน
+        } else if (hours >= 19 && hours <= 23 || hours >= 0 && hours <= 4 ) {
+            play_audio2();
+            //เช้า
+        } else if (hours >= 5 && hours <= 7) {
+            play_audio3();
+            //กลางวัน
+        }else if (hours >= 8 && hours <= 16) {
+            play_audio4();
+        } else {console.log("Error from play_audio")}
+    });
+
+    function play_audio1() {
+        if ($('#audio1')[0].paused) {
+            $('audio').trigger('pause');
+            $('#audio1')[0].play();
+            var id = $('#audio1').attr('id');
+            loop(id);
+        } else {
+            $('#audio1')[0].pause();
+        }
+    }
+
+    function play_audio2() {
+        if ($('#audio2')[0].paused) {
+            $('audio').trigger('pause');
+            $('#audio2')[0].play();
+            var id = $('#audio2').attr('id');
+            loop(id);
+        } else {
+            $('#audio2')[0].pause();
+        }
+    }
+    function play_audio3() {
+        if ($('#audio3')[0].paused) {
+            $('audio').trigger('pause');
+            $('#audio3')[0].play();
+            var id = $('#audio3').attr('id');
+            loop(id);
+        } else {
+            $('#audio3')[0].pause();
+        }
+    }
+
+    function play_audio4() {
+        if ($('#audio4')[0].paused) {
+            $('audio').trigger('pause');
+            $('#audio4')[0].play();
+            var id = $('#audio4').attr('id');
+            loop(id);
+        } else {
+            $('#audio4')[0].pause();
+        }
+    }
+
+
+
+    function loop(id) {
+        var myVideo = document.getElementById(id);
+        if (typeof myVideo.loop == 'boolean') { // loop supported
+            myVideo.loop = true;
+        } else { // loop property not supported
+            myVideo.addEventListener('ended', function() {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+        }
+    }
+
+
+
+</script>
+
+</html>
