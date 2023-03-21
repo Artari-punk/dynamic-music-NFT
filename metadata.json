@@ -1,7 +1,7 @@
 {
   "description": "Dynamic NFT type1 ", 
   "external_url": "https://openseacreatures.io/3", 
-  "image": "https://storage.googleapis.com/opensea-prod.appspot.com/puffs/3.png", 
+  "image": "https://raw.githubusercontent.com/Artari-punk/dynamic-music-NFT/main/cover.jpg", 
   "name": "รักซึ่งหน้า",
   "animation_url": "https://artari-punk.github.io/dynamic-music-NFT/",
   "attributes": [ ... ]
